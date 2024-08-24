@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索功能示例</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;  /* 使页面充满视口高度 */
+        }
+        .content {
+            flex: 1;  /* 中间内容区域自适应 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;  /* 水平居中 */
+            justify-content: center;  /* 垂直居中 */
+        }
+        input[type="text"] {
+            width: 200px;
+            padding: 5px;
+            margin: 10px 0; /* 上下留间距 */
+        }
+        button {
+            padding: 5px 10px;
+        }
+        img {
+            max-width: 100%;  /* 图片自适应宽度 */
+            height: auto;    /* 保持宽高比 */
+            margin-bottom: 20px; /* 图片底部留间距 */
+        }
+    </style>
+</head>
+<body>
+
+<img src="展示图片.jpg" alt="前面图片" />
+
+<div class="content">
+    <h1>标题</h1>
+    <input type="text" id="searchInput" placeholder="输入名字进行搜索">
+    <button onclick="search()">搜索</button>
+</div>
+
+<img src="座位图片.jpg" alt="后面图片" />
+
+<script>
+    const data = {
+        "张三": 1,
+        "李四": 2,
+        "王五": 3,
+        "赵六": 4,
+        "钱七": 5,
+        "孙八": 6,
+        "张九": 7,
+        "李十": 8,
+        "王零": 9
+    };
+
+    function search() {
+        const input = document.getElementById('searchInput').value;
+        const result = [];
+
+        const filteredResults = Object.keys(data).filter(name => name.includes(input));
+
+        if (filteredResults.length === 0) {
+            alert('没有找到相关结果');
+        } else {
+            filteredResults.forEach(name => {
+                result.push(`${name}：${data[name]}`);
+            });
+            alert(result.join('\n'));  // 使用换行符拼接并在提示框中显示
+        }
+    }
+</script>
+
+</body>
+</html>
